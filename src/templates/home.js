@@ -1,30 +1,62 @@
 import React from "react"
 import { Link } from "gatsby"
 import Layout from "../components/Layout"
+import BlogPostsSection from "../components/Home/BlogPostsSection"
+import TestimonialsSection from "../components/Home/TestimonialsSection"
 
 export default ({ data, location, pageContext }) => {
   const { locale } = pageContext
+  const { homeData } = data
 
   return (
     <Layout
       currentLocale={locale}
       otherLocaleUrl={locale === "en" ? "/fr" : "/en"}
     >
-      Test
+      <BlogPostsSection
+        title={homeData.blogPostsSectionTitle}
+        blogPosts={homeData.blogPostHighlights}
+      />
+      <TestimonialsSection
+        title={homeData.testimonialsSectionTitle}
+        testimonials={homeData.testimonialHighlights}
+      />
+      {JSON.stringify(data.homeData)}
     </Layout>
   )
 }
 
 export const query = graphql`
   query($locale: String!) {
-    allContentfulBlogPost(filter: { node_locale: { eq: $locale } }) {
-      nodes {
+    homeData: contentfulHomePage(node_locale: { eq: $locale }) {
+      blogPostsSectionTitle
+      blogPostHighlights {
+        name
+        createdAt
+        coverImage {
+          file {
+            url
+          }
+        }
         fields {
           url
         }
-        node_locale
-        contentful_id
       }
+      testimonialsSectionTitle
+      testimonialHighlights {
+        personPicture {
+          file {
+            url
+          }
+        }
+        title
+        message {
+          message
+        }
+        personName
+        personJobTitle
+      }
+      emailCaptureSectionTitle
     }
   }
 `

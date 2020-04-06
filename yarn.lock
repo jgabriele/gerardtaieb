@@ -873,6 +873,13 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@contentful/rich-text-react-renderer@^13.4.0":
+  version "13.4.0"
+  resolved "https://ric.jfrog.io/ric/api/npm/npm/@contentful/rich-text-react-renderer/-/rich-text-react-renderer-13.4.0.tgz#2efb556f58d608472c2dde692153c7b7b985fae7"
+  integrity sha1-LvtVb1jWCEcsLd5pIVPHt7mF+uc=
+  dependencies:
+    "@contentful/rich-text-types" "^13.4.0"
+
 "@contentful/rich-text-types@^13.4.0":
   version "13.4.0"
   resolved "https://ric.jfrog.io/ric/api/npm/npm/@contentful/rich-text-types/-/rich-text-types-13.4.0.tgz#a59c311ebd1b801ee00edbc08663c8d78da26171"
