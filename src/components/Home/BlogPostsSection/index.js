@@ -12,7 +12,7 @@ export default function BlogPostsSection({ title, blogPosts }) {
           <a
             key={post.name}
             className={classes.blogPost}
-            href="/fr/article/blog-post-lie"
+            href={post.fields.url}
           >
             <div
               className={classes.image}

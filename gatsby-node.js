@@ -103,18 +103,18 @@ exports.createPages = async ({ graphql, actions }) => {
   // })
 
   // Create pages for blog posts
-  // await Promise.all(
-  //   data.allContentfulBlogPost.edges.map(({ node }) =>
-  //     createPage({
-  //       path: node.fields.url,
-  //       component: path.resolve(`./src/templates/blogPost.js`),
-  //       context: {
-  //         url: node.fields.url,
-  //         locale: node.node_locale,
-  //       },
-  //     })
-  //   )
-  // )
+  await Promise.all(
+    data.allContentfulBlogPost.edges.map(({ node }) =>
+      createPage({
+        path: node.fields.url,
+        component: path.resolve(`./src/templates/blogPost.js`),
+        context: {
+          url: node.fields.url,
+          locale: node.node_locale,
+        },
+      })
+    )
+  )
 
   // // Create pages to list all companies
   // createPage({
