@@ -1,15 +1,19 @@
 import React from "react"
+import Section from "../Section"
 
 import useStyles from "./style"
 
-export default function ArticlesPreviewSection({ title, blogPosts }) {
+export default function BlogPostsSection({ title, blogPosts }) {
   const classes = useStyles()
   return (
-    <div className={classes.root}>
-      <h2>{title}</h2>
+    <Section title={title}>
       <div className={classes.blogPostsWrapper}>
         {blogPosts.map(post => (
-          <a className={classes.blogPost} href="/fr/article/blog-post-lie">
+          <a
+            key={post.name}
+            className={classes.blogPost}
+            href="/fr/article/blog-post-lie"
+          >
             <div
               className={classes.image}
               style={{ backgroundImage: `url(${post.coverImage.file.url})` }}
@@ -19,6 +23,6 @@ export default function ArticlesPreviewSection({ title, blogPosts }) {
           </a>
         ))}
       </div>
-    </div>
+    </Section>
   )
 }

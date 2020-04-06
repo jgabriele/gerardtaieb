@@ -10,7 +10,7 @@ const useStyles = makeStyles({
 export default function AsymetricSlash({
   color = "white",
   backgroundColor,
-  children,
+  direction = "left",
 }) {
   const classes = useStyles()
   const points = direction === "left" ? "0,5 100,0 100,5" : "0,0 100,0 100,5"

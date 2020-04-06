@@ -1,4 +1,4 @@
-import React, { Children } from "react"
+import React from "react"
 import useStyles from "./style"
 
 export default function Layout() {

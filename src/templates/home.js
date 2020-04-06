@@ -1,8 +1,8 @@
 import React from "react"
-import { Link } from "gatsby"
 import Layout from "../components/Layout"
 import BlogPostsSection from "../components/Home/BlogPostsSection"
 import TestimonialsSection from "../components/Home/TestimonialsSection"
+import EmailCaptureSection from "../components/Home/EmailCaptureSection"
 
 export default ({ data, location, pageContext }) => {
   const { locale } = pageContext
@@ -21,7 +21,7 @@ export default ({ data, location, pageContext }) => {
         title={homeData.testimonialsSectionTitle}
         testimonials={homeData.testimonialHighlights}
       />
-      {JSON.stringify(data.homeData)}
+      <EmailCaptureSection title={homeData.emailCaptureSectionTitle} />
     </Layout>
   )
 }

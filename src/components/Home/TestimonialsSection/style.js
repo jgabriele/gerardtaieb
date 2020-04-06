@@ -2,12 +2,20 @@ import { makeStyles } from "@material-ui/styles"
 
 export default makeStyles({
   root: {
-    padding: "0 64px 96px",
+    background: "#eee",
   },
   testimonialWrapper: {
     padding: "64px 32px",
     boxSizing: "border-box",
     borderBottom: "1px solid #fff",
+
+    "&:first-child": {
+      paddingTop: 0,
+    },
+
+    "&:last-child": {
+      borderBottom: "none",
+    },
   },
   testimonial: {
     width: "100%",
@@ -21,6 +29,7 @@ export default makeStyles({
     marginRight: 32,
     borderRadius: "50%",
     boxSizing: "border-box",
+    maxWidth: "100%",
   },
   title: {
     fontSize: 18,
