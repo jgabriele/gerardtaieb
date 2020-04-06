@@ -1,7 +1,7 @@
 import React from "react"
 import useStyles from "./style"
 
-export default function Layout() {
+export default function Header() {
   const classes = useStyles()
   return (
     <header className={classes.header}>

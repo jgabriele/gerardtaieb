@@ -11,6 +11,7 @@ export default ({ data, pageContext }) => {
     <Layout
       currentLocale={locale}
       otherLocaleUrl={locale === "en" ? "/fr" : "/en"}
+      footerText={"Hello"}
     >
       <BlogPostPage blogPost={data.blogPost} />
     </Layout>

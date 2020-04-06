@@ -1,4 +1,5 @@
 import React from "react"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Layout from "../components/Layout"
 import BlogPostsSection from "../components/Home/BlogPostsSection"
 import TestimonialsSection from "../components/Home/TestimonialsSection"
@@ -12,6 +13,7 @@ export default ({ data, location, pageContext }) => {
     <Layout
       currentLocale={locale}
       otherLocaleUrl={locale === "en" ? "/fr" : "/en"}
+      footerText={documentToReactComponents(data.generalData.footerText.json)}
     >
       <BlogPostsSection
         title={homeData.blogPostsSectionTitle}
@@ -57,6 +59,12 @@ export const query = graphql`
         personJobTitle
       }
       emailCaptureSectionTitle
+    }
+
+    generalData: contentfulGeneralData(node_locale: { eq: "fr" }) {
+      footerText {
+        json
+      }
     }
   }
 `
