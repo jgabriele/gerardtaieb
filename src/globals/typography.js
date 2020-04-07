@@ -12,7 +12,7 @@ elkGlenTheme.overrideThemeStyles = ({ rhythm }, options) => ({
   "a:hover": {
     textDecoration: "underline",
   },
-  img: {
+  "img, p": {
     margin: 0,
   },
 })
