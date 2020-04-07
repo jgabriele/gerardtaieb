@@ -12,4 +12,8 @@ export default makeStyles({
     alignItems: "center",
     justifyContent: "space-between",
   },
+
+  logo: {
+    height: 50,
+  },
 })

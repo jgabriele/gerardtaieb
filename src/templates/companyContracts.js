@@ -7,7 +7,7 @@ import ContractTypesSection from "../components/Companies/ContractTypesSection"
 export default ({ data, location, pageContext }) => {
   const { locale } = pageContext
 
-  const company = data.company
+  const { company, generalData } = data
 
   const breadcrumbLinks = [
     { name: "Companies", url: `/${locale}/files` },
@@ -18,6 +18,7 @@ export default ({ data, location, pageContext }) => {
     <Layout
       currentLocale={locale}
       otherLocaleUrl={locale === "en" ? "/fr" : "/en"}
+      logoSrc={generalData.logo.file.url}
       footerText={documentToReactComponents(data.generalData.footerText.json)}
     >
       <Breadcrumbs links={breadcrumbLinks} />
@@ -55,6 +56,11 @@ export const query = graphql`
     generalData: contentfulGeneralData(node_locale: { eq: "fr" }) {
       footerText {
         json
+      }
+      logo {
+        file {
+          url
+        }
       }
     }
   }

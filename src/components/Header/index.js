@@ -2,11 +2,13 @@ import React from "react"
 import { Link } from "gatsby"
 import useStyles from "./style"
 
-export default function Header() {
+export default function Header({ logoSrc }) {
   const classes = useStyles()
   return (
     <header className={classes.header}>
-      <Link href="/fr">Logo</Link>
+      <Link href="/fr">
+        <img className={classes.logo} src={logoSrc} alt="logo" />
+      </Link>
     </header>
   )
 }

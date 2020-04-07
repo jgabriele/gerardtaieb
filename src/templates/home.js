@@ -7,13 +7,14 @@ import EmailCaptureSection from "../components/Home/EmailCaptureSection"
 
 export default ({ data, location, pageContext }) => {
   const { locale } = pageContext
-  const { homeData } = data
+  const { homeData, generalData } = data
 
   return (
     <Layout
       currentLocale={locale}
       otherLocaleUrl={locale === "en" ? "/fr" : "/en"}
-      footerText={documentToReactComponents(data.generalData.footerText.json)}
+      logoSrc={generalData.logo.file.url}
+      footerText={documentToReactComponents(generalData.footerText.json)}
     >
       <BlogPostsSection
         title={homeData.blogPostsSectionTitle}
@@ -64,6 +65,11 @@ export const query = graphql`
     generalData: contentfulGeneralData(node_locale: { eq: "fr" }) {
       footerText {
         json
+      }
+      logo {
+        file {
+          url
+        }
       }
     }
   }

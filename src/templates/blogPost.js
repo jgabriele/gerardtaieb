@@ -6,11 +6,14 @@ import BlogPostPage from "../components/BlogPost"
 export default ({ data, pageContext }) => {
   const { locale } = pageContext
 
+  const { generalData } = data
+
   return (
     <Layout
       currentLocale={locale}
       otherLocaleUrl={locale === "en" ? "/fr" : "/en"}
-      footerText={documentToReactComponents(data.generalData.footerText.json)}
+      logoSrc={generalData.logo.file.url}
+      footerText={documentToReactComponents(generalData.footerText.json)}
     >
       <BlogPostPage blogPost={data.blogPost} />
     </Layout>
@@ -38,6 +41,11 @@ export const query = graphql`
     generalData: contentfulGeneralData(node_locale: { eq: "fr" }) {
       footerText {
         json
+      }
+      logo {
+        file {
+          url
+        }
       }
     }
   }
