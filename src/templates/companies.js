@@ -1,12 +1,10 @@
 import React from "react"
-// import { makeStyles } from "@material-ui/styles"
 import { Link } from "gatsby"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Layout from "../components/Layout"
-
-// const useStyles = makeStyles({})
+import CompaniesSection from "../components/Companies/CompaniesSection"
 
 export default ({ data, location, pageContext }) => {
-  // const classes = useStyles()
   const { locale } = pageContext
 
   const companies = data.allContentfulCompanyFiles.nodes
@@ -15,10 +13,9 @@ export default ({ data, location, pageContext }) => {
     <Layout
       currentLocale={locale}
       otherLocaleUrl={locale === "en" ? "/fr" : "/en"}
+      footerText={documentToReactComponents(data.generalData.footerText.json)}
     >
-      {companies.map(company => (
-        <Link to={company.fields.url}>{company.name}</Link>
-      ))}
+      <CompaniesSection companies={companies} />
     </Layout>
   )
 }
@@ -31,6 +28,17 @@ export const query = graphql`
         fields {
           url
         }
+        logo {
+          file {
+            url
+          }
+        }
+      }
+    }
+
+    generalData: contentfulGeneralData(node_locale: { eq: "fr" }) {
+      footerText {
+        json
       }
     }
   }

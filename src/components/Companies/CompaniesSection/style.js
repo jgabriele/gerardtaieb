@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/styles"
 
 export default makeStyles({
-  blogPostsWrapper: {
+  companiesWrapper: {
     display: "flex",
     justifyContent: "space-around",
   },

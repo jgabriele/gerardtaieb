@@ -1,26 +1,23 @@
 import React from "react"
-import Section from "../Section"
+import Section from "../../Section"
+import Card from "../../Card"
 
 import useStyles from "./style"
 
 export default function BlogPostsSection({ title, blogPosts }) {
   const classes = useStyles()
+
   return (
     <Section title={title}>
       <div className={classes.blogPostsWrapper}>
         {blogPosts.map(post => (
-          <a
-            key={post.name}
-            className={classes.blogPost}
-            href={post.fields.url}
-          >
-            <div
-              className={classes.image}
-              style={{ backgroundImage: `url(${post.coverImage.file.url})` }}
-            ></div>
-            <div className={classes.title}>{post.name}</div>
-            <div className={classes.date}>{post.createdAt}</div>
-          </a>
+          <Card
+            id={post.name}
+            url={post.fields.url}
+            imageSrc={post.coverImage.file.url}
+            title={post.name}
+            subtitle={post.createdAt}
+          />
         ))}
       </div>
     </Section>

@@ -1,5 +1,5 @@
 import React from "react"
-import Section from "../Section"
+import Section from "../../Section"
 
 import AsymetricSlash from "../../AsymetricSlash"
 // import useStyles from "./style"

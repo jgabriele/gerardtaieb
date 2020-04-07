@@ -1,25 +1,28 @@
 import React from "react"
-import { makeStyles } from "@material-ui/styles"
-// import { Link } from "gatsby"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Layout from "../components/Layout"
-
-// const useStyles = makeStyles({})
+import Breadcrumbs from "../components/Breadcrumbs"
+import ContractTypesSection from "../components/Companies/ContractTypesSection"
 
 export default ({ data, location, pageContext }) => {
-  // const classes = useStyles()
   const { locale } = pageContext
 
   const company = data.company
+
+  const breadcrumbLinks = [
+    { name: "Companies", url: `/${locale}/files` },
+    { name: company.name, url: company.fields.url },
+  ]
 
   return (
     <Layout
       currentLocale={locale}
       otherLocaleUrl={locale === "en" ? "/fr" : "/en"}
+      footerText={documentToReactComponents(data.generalData.footerText.json)}
     >
-      {company.name}
-      {company.contractTypes.map(contract => (
-        <Link to={contract.fields.url}>{contract.name}</Link>
-      ))}
+      <Breadcrumbs links={breadcrumbLinks} />
+
+      <ContractTypesSection contractTypes={company.contractTypes} />
     </Layout>
   )
 }
@@ -38,6 +41,20 @@ export const query = graphql`
       contractTypes {
         name
         type
+        fields {
+          url
+        }
+        logo {
+          file {
+            url
+          }
+        }
+      }
+    }
+
+    generalData: contentfulGeneralData(node_locale: { eq: "fr" }) {
+      footerText {
+        json
       }
     }
   }

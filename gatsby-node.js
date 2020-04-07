@@ -74,6 +74,11 @@ exports.createPages = async ({ graphql, actions }) => {
           fields {
             url
           }
+          company_files {
+            fields {
+              url
+            }
+          }
         }
       }
     }
@@ -116,46 +121,46 @@ exports.createPages = async ({ graphql, actions }) => {
     )
   )
 
-  // // Create pages to list all companies
-  // createPage({
-  //   path: `/fr/files/`,
-  //   component: path.resolve(`./src/templates/companies.js`),
-  //   context: {
-  //     locale: "fr",
-  //   },
-  // })
+  // Create pages to list all companies
+  createPage({
+    path: `/fr/files/`,
+    component: path.resolve(`./src/templates/companies.js`),
+    context: {
+      locale: "fr",
+    },
+  })
 
-  // // Create pages to list all contract types per company
-  // console.log(">>>>>>>>>>>>>>>>>>")
-  // console.log(data.allContentfulCompanyFiles)
-  // await Promise.all(
-  //   data.allContentfulCompanyFiles.nodes.map(
-  //     ({ fields, node_locale }) =>
-  //       console.log(fields.url) ||
-  //       createPage({
-  //         path: fields.url,
-  //         component: path.resolve(`./src/templates/companyContracts.js`),
-  //         context: {
-  //           url: fields.url,
-  //           locale: node_locale,
-  //         },
-  //       })
-  //   )
-  // )
+  // Create pages to list all contract types per company
+  await Promise.all(
+    data.allContentfulCompanyFiles.nodes.map(
+      ({ fields, node_locale }) =>
+        console.log(fields.url) ||
+        createPage({
+          path: fields.url,
+          component: path.resolve(`./src/templates/companyContracts.js`),
+          context: {
+            url: fields.url,
+            locale: node_locale,
+          },
+        })
+    )
+  )
 
-  // // Create pages to list all documents in contract types for company
-  // await Promise.all(
-  //   data.allContentfulContractType.nodes.map(
-  //     ({ fields, node_locale }) =>
-  //       console.log(fields.url) ||
-  //       createPage({
-  //         path: fields.url,
-  //         component: path.resolve(`./src/templates/companyContracts.js`),
-  //         context: {
-  //           url: fields.url,
-  //           locale: node_locale,
-  //         },
-  //       })
-  //   )
-  // )
+  // Create pages to list all documents in contract types for company
+  await Promise.all(
+    data.allContentfulContractType.nodes.map(
+      ({ fields, node_locale, company_files }) =>
+        createPage({
+          path: fields.url,
+          component: path.resolve(
+            `./src/templates/companyContractDocuments.js`
+          ),
+          context: {
+            url: fields.url,
+            locale: node_locale,
+            parentUrl: company_files[0].fields.url,
+          },
+        })
+    )
+  )
 }
