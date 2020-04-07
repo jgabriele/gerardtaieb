@@ -9,6 +9,5 @@ export default makeStyles({
     padding: "96px 0",
     fontSize: 42,
     textAlign: "center",
-    fontFamily: "Ubuntu",
   },
 })
