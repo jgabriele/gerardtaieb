@@ -11,13 +11,15 @@ export default function BlogPostsSection({ title, blogPosts }) {
     <Section title={title}>
       <div className={classes.blogPostsWrapper}>
         {blogPosts.map(post => (
-          <Card
-            id={post.name}
-            url={post.fields.url}
-            imageSrc={post.coverImage.file.url}
-            title={post.name}
-            subtitle={post.createdAt}
-          />
+          <div className={classes.blogPostWrapper}>
+            <Card
+              id={post.name}
+              url={post.fields.url}
+              imageSrc={post.coverImage.file.url}
+              title={post.name}
+              subtitle={post.createdAt}
+            />
+          </div>
         ))}
       </div>
     </Section>

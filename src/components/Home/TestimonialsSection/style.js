@@ -21,6 +21,10 @@ export default makeStyles({
     width: "100%",
     display: "flex",
     alignItems: "center",
+
+    "@media screen and (max-width: 960px)": {
+      flexDirection: "column",
+    },
   },
   image: {
     width: 120,
@@ -30,6 +34,11 @@ export default makeStyles({
     borderRadius: "50%",
     boxSizing: "border-box",
     maxWidth: "100%",
+
+    "@media screen and (max-width: 960px)": {
+      marginRight: 0,
+      marginBottom: 32,
+    },
   },
   title: {
     fontSize: 18,
