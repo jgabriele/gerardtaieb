@@ -7,7 +7,7 @@ export default function Card({ id, url, imageSrc, title, subtitle }) {
   const classes = useStyles()
 
   return (
-    <Link key={id} className={classes.card} to={url}>
+    <Link className={classes.card} to={url}>
       <div
         className={classes.image}
         style={{ backgroundImage: `url(${imageSrc})` }}

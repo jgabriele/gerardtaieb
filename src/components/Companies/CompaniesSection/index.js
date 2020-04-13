@@ -12,6 +12,7 @@ export default function CompaniesSection({ title, companies }) {
       <div className={classes.companiesWrapper}>
         {companies.map(company => (
           <Card
+            key={company.name}
             id={company.name}
             url={company.fields.url}
             imageSrc={company.logo.file.url}

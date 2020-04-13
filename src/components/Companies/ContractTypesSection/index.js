@@ -12,6 +12,7 @@ export default function ContractTypesSection({ title, contractTypes }) {
       <div className={classes.contractTypesWrapper}>
         {contractTypes.map(contractType => (
           <Card
+            key={contractType.name}
             id={contractType.name}
             url={contractType.fields.url}
             imageSrc={contractType.logo.file.url}

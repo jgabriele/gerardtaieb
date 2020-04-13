@@ -11,7 +11,7 @@ export default function BlogPostsSection({ title, blogPosts }) {
     <Section title={title}>
       <div className={classes.blogPostsWrapper}>
         {blogPosts.map(post => (
-          <div className={classes.blogPostWrapper}>
+          <div key={post.name} className={classes.blogPostWrapper}>
             <Card
               id={post.name}
               url={post.fields.url}
