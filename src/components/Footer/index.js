@@ -1,8 +1,9 @@
 import React from "react"
 import { Link, useStaticQuery } from "gatsby"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import useStyles from "./style"
 
-export default function Footer({ text }) {
+export default function Footer() {
   const classes = useStyles()
   const { generalData } = useStaticQuery(graphql`
     query {
@@ -64,7 +65,9 @@ export default function Footer({ text }) {
           </ul>
         </div>
       </div>
-      <div className={classes.copyright}>{text}</div>
+      <div className={classes.copyright}>
+        {documentToReactComponents(generalData.footerText.json)}
+      </div>
     </footer>
   )
 }

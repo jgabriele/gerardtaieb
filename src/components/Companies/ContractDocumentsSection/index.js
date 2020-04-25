@@ -1,6 +1,5 @@
 import React from "react"
 import Section from "../../Section"
-import Card from "../../Card"
 
 import useStyles from "./style"
 

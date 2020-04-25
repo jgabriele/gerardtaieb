@@ -1,5 +1,4 @@
 import React from "react"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Layout from "../components/Layout"
 import BlogPostsSection from "../components/Home/BlogPostsSection"
 import TestimonialsSection from "../components/Home/TestimonialsSection"
@@ -7,14 +6,12 @@ import EmailCaptureSection from "../components/Home/EmailCaptureSection"
 
 export default ({ data, location, pageContext }) => {
   const { locale } = pageContext
-  const { homeData, generalData } = data
+  const { homeData } = data
 
   return (
     <Layout
       currentLocale={locale}
       otherLocaleUrl={locale === "en" ? "/fr" : "/en"}
-      logoSrc={generalData.logo.file.url}
-      footerText={documentToReactComponents(generalData.footerText.json)}
     >
       <BlogPostsSection
         title={homeData.blogPostsSectionTitle}
@@ -60,17 +57,6 @@ export const query = graphql`
         personJobTitle
       }
       emailCaptureSectionTitle
-    }
-
-    generalData: contentfulGeneralData(node_locale: { eq: "fr" }) {
-      footerText {
-        json
-      }
-      logo {
-        file {
-          url
-        }
-      }
     }
   }
 `

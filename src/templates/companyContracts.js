@@ -1,5 +1,4 @@
 import React from "react"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Layout from "../components/Layout"
 import Breadcrumbs from "../components/Breadcrumbs"
 import ContractTypesSection from "../components/Companies/ContractTypesSection"
@@ -7,7 +6,7 @@ import ContractTypesSection from "../components/Companies/ContractTypesSection"
 export default ({ data, location, pageContext }) => {
   const { locale } = pageContext
 
-  const { company, generalData } = data
+  const { company } = data
 
   const breadcrumbLinks = [
     { name: "Companies", url: `/${locale}/files` },
@@ -18,8 +17,6 @@ export default ({ data, location, pageContext }) => {
     <Layout
       currentLocale={locale}
       otherLocaleUrl={locale === "en" ? "/fr" : "/en"}
-      logoSrc={generalData.logo.file.url}
-      footerText={documentToReactComponents(data.generalData.footerText.json)}
     >
       <Breadcrumbs links={breadcrumbLinks} />
 
@@ -49,17 +46,6 @@ export const query = graphql`
           file {
             url
           }
-        }
-      }
-    }
-
-    generalData: contentfulGeneralData(node_locale: { eq: "fr" }) {
-      footerText {
-        json
-      }
-      logo {
-        file {
-          url
         }
       }
     }

@@ -5,16 +5,6 @@ import useStyles from "./style"
 
 export default function BlogPostPage({ blogPost }) {
   const classes = useStyles()
-  //     coverImage {
-  //       file {
-  //         url
-  //       }
-  //     }
-  //     name
-  //     createdAt
-  //     content {
-  //       json
-  //     }
   return (
     <div className={classes.root}>
       <div className={classes.blogPost}>

@@ -6,15 +6,15 @@ import "../../globals/global.css"
 
 import useStyle from "./style"
 
-export default function Layout({ children, logoSrc, footerText }) {
+export default function Layout({ children }) {
   // TODO handle currentLocale, otherLocaleUrl props
   const classes = useStyle()
 
   return (
     <>
-      <Header logoSrc={logoSrc} />
+      <Header />
       <div className={classes.page}>{children}</div>
-      <Footer text={footerText} />
+      <Footer />
     </>
   )
 }
