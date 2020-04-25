@@ -31,6 +31,7 @@ export default makeStyles({
   },
 
   copyright: {
+    opacity: 0.3,
     marginTop: 64,
   },
 })
