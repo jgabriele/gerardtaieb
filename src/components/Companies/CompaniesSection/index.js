@@ -8,7 +8,7 @@ export default function CompaniesSection({ title, companies }) {
   const classes = useStyles()
 
   return (
-    <Section title="Companies">
+    <Section title="Compagnies">
       <div className={classes.companiesWrapper}>
         {companies.map(company => (
           <Card
