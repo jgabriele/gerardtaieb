@@ -15,6 +15,9 @@ elkGlenTheme.overrideThemeStyles = ({ rhythm }, options) => ({
   "img, p": {
     margin: 0,
   },
+  "h1, h2, h3": {
+    color: "inherit",
+  },
 })
 const typography = new Typography(elkGlenTheme)
 

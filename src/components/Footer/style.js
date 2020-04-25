@@ -4,8 +4,12 @@ export default makeStyles({
   footer: {
     color: "white",
     background: "#0e1e2b",
-    padding: "32px 64px",
+    padding: "0 64px 32px",
     fontSize: 16,
+
+    "@media screen and (max-width: 960px)": {
+      padding: "0 32px 32px",
+    },
   },
 
   columns: {
@@ -27,6 +31,6 @@ export default makeStyles({
   },
 
   copyright: {
-    marginTop: 32,
+    marginTop: 64,
   },
 })

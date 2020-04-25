@@ -27,12 +27,11 @@ export default function Footer() {
     }
   `)
 
-  console.log(generalData)
   return (
     <footer className={classes.footer}>
       <div className={classes.columns}>
         <div className={classes.column}>
-          <div>Documents généraux</div>
+          <h3>Documents généraux</h3>
           <ul className={classes.linkList}>
             {generalData.commonDocuments.map(document => (
               <li>
@@ -44,7 +43,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className={classes.column}>
-          <div>Pages du site</div>
+          <h3>Pages du site</h3>
           <ul className={classes.linkList}>
             <li>
               <Link to="/">Accueil</Link>
@@ -55,7 +54,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className={classes.column}>
-          <div>Les articles les plus appréciés</div>
+          <h3>Les articles les plus appréciés</h3>
           <ul className={classes.linkList}>
             {generalData.bestArticles.map(article => (
               <li>
