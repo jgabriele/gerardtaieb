@@ -27,7 +27,7 @@ export default ({ data, location, pageContext }) => {
 
 export const query = graphql`
   query($url: String!, $locale: String!) {
-    company: contentfulCompanyFiles(
+    company: contentfulCompagnie(
       node_locale: { eq: $locale }
       fields: { url: { eq: $url } }
     ) {

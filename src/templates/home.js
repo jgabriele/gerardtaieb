@@ -28,7 +28,7 @@ export default ({ data, location, pageContext }) => {
 
 export const query = graphql`
   query($locale: String!) {
-    homeData: contentfulHomePage(node_locale: { eq: $locale }) {
+    homeData: contentfulPageDaccueil(node_locale: { eq: $locale }) {
       blogPostsSectionTitle
       blogPostHighlights {
         name

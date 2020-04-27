@@ -7,7 +7,7 @@ export default function Footer() {
   const classes = useStyles()
   const { generalData } = useStaticQuery(graphql`
     query {
-      generalData: contentfulGeneralData(node_locale: { eq: "fr" }) {
+      generalData: contentfulDonneesGenerales(node_locale: { eq: "fr" }) {
         commonDocuments {
           file {
             url

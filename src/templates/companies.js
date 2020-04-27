@@ -4,7 +4,7 @@ import CompaniesSection from "../components/Companies/CompaniesSection"
 
 export default ({ data, location, pageContext }) => {
   const { locale } = pageContext
-  const companies = data.allContentfulCompanyFiles.nodes
+  const companies = data.companies.nodes
 
   return (
     <Layout
@@ -18,7 +18,9 @@ export default ({ data, location, pageContext }) => {
 
 export const query = graphql`
   query($locale: String!) {
-    allContentfulCompanyFiles(filter: { node_locale: { eq: $locale } }) {
+    companies: allContentfulCompagnie(
+      filter: { node_locale: { eq: $locale } }
+    ) {
       nodes {
         name
         fields {

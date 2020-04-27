@@ -4,7 +4,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
-  if (node.internal.type === `ContentfulBlogPost`) {
+  if (node.internal.type === `ContentfulArticle`) {
     const url = `/${node.node_locale}/article/${createSlug(
       node.name.toLowerCase()
     )}`
@@ -16,7 +16,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     })
   }
 
-  if (node.internal.type === `ContentfulCompanyFiles`) {
+  if (node.internal.type === `ContentfulCompagnie`) {
     const url = `/${node.node_locale}/files/${createSlug(
       node.name.toLowerCase()
     )}`
@@ -28,8 +28,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     })
   }
 
-  if (node.internal.type === `ContentfulContractType`) {
-    const parentCompany = getNode(node["company files___NODE"][0])
+  if (node.internal.type === `ContentfulTypeDeContrat`) {
+    const parentCompany = getNode(node["compagnie___NODE"][0])
     const url = `/${node.node_locale}/files/${createSlug(
       parentCompany.name.toLowerCase()
     )}/${createSlug(node.name.toLowerCase())}`
@@ -46,8 +46,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const { data } = await graphql(`
-    query GetBlogPosts {
-      allContentfulBlogPost {
+    query {
+      blogPosts: allContentfulArticle {
         edges {
           node {
             fields {
@@ -59,7 +59,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
 
-      allContentfulCompanyFiles {
+      companies: allContentfulCompagnie {
         nodes {
           node_locale
           fields {
@@ -68,13 +68,13 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
 
-      allContentfulContractType {
+      contractTypes: allContentfulTypeDeContrat {
         nodes {
           node_locale
           fields {
             url
           }
-          company_files {
+          compagnie {
             fields {
               url
             }
@@ -109,7 +109,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Create pages for blog posts
   await Promise.all(
-    data.allContentfulBlogPost.edges.map(({ node }) =>
+    data.blogPosts.edges.map(({ node }) =>
       createPage({
         path: node.fields.url,
         component: path.resolve(`./src/templates/blogPost.js`),
@@ -132,35 +132,30 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Create pages to list all contract types per company
   await Promise.all(
-    data.allContentfulCompanyFiles.nodes.map(
-      ({ fields, node_locale }) =>
-        console.log(fields.url) ||
-        createPage({
-          path: fields.url,
-          component: path.resolve(`./src/templates/companyContracts.js`),
-          context: {
-            url: fields.url,
-            locale: node_locale,
-          },
-        })
+    data.companies.nodes.map(({ fields, node_locale }) =>
+      createPage({
+        path: fields.url,
+        component: path.resolve(`./src/templates/companyContracts.js`),
+        context: {
+          url: fields.url,
+          locale: node_locale,
+        },
+      })
     )
   )
 
   // Create pages to list all documents in contract types for company
   await Promise.all(
-    data.allContentfulContractType.nodes.map(
-      ({ fields, node_locale, company_files }) =>
-        createPage({
-          path: fields.url,
-          component: path.resolve(
-            `./src/templates/companyContractDocuments.js`
-          ),
-          context: {
-            url: fields.url,
-            locale: node_locale,
-            parentUrl: company_files[0].fields.url,
-          },
-        })
+    data.contractTypes.nodes.map(({ fields, node_locale, compagnie }) =>
+      createPage({
+        path: fields.url,
+        component: path.resolve(`./src/templates/companyContractDocuments.js`),
+        context: {
+          url: fields.url,
+          locale: node_locale,
+          parentUrl: compagnie[0].fields.url,
+        },
+      })
     )
   )
 }
