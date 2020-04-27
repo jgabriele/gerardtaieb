@@ -12,7 +12,8 @@ export default makeStyles({
   image: {
     width: "100%",
     height: 200,
-    backgroundSize: "cover",
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
   },
   title: {
